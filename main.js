@@ -47,5 +47,44 @@ function preguntaExplosivos(){
 let calculado = material[materialesUsuario]*cantidadEstructuras / explosivo[explosivoUsuario]
 alert(`Necesitas ${calculado} ${explosivoUsuario}`)
 
+//batalla entre 2 pesonajes del vieojuego
+const vidaMaxima = 100
+const vidaMinima = 0
+const dañoMinimo = 5
+const dañoMaximo = 35
+let vidaActualPlayer = 100
+let vidaActualBot = 100
+
+let round = 0
+function convida() {
+    return vidaActualPlayer > 0 && vidaActualBot > 0
+}
+ while (convida()) {
+        let disparoPlayer=Math.ceil(Math.random() * (dañoMaximo - dañoMinimo) + dañoMinimo)
+        let disparoBot=Math.ceil(Math.random() * (dañoMaximo - dañoMinimo) + dañoMinimo)
+    if (disparoPlayer === disparoBot){
+        vidaActualBot = vidaActualBot - disparoPlayer
+        vidaActualPlayer = vidaActualPlayer - disparoBot
+    }
+    else if(disparoPlayer < disparoBot){
+        vidaActualPlayer = vidaActualPlayer - disparoBot
+    }
+    if(disparoPlayer > disparoBot){
+        vidaActualBot = vidaActualBot - disparoPlayer
+    }
+    round= round + 1
+    console.log("-----------------")
+    console.log ("round " +round)
+    console.log("tienes " + vidaActualPlayer + " Puntos de vida" )
+    console.log("El Cientifico tiene " + vidaActualBot + " puntos de vida" )
+    console.log("-----------------")
+    if (vidaActualPlayer <= 0 && vidaActualBot <= 0) {
+        console.log("Empate Ambos jugadores han sido derrotados.")
+    } else if (vidaActualPlayer <= 0) {
+        console.log("El Cientifico gana Has sido derrotado.")
+    } else if (vidaActualBot <= 0) {
+        console.log("Ganaste El bot ha sido derrotado.")
+}
+}
 
 
